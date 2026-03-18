@@ -11,7 +11,25 @@
 }
 
 .landing-content {
-    margin-top: -600px;
+    margin-top: -550px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.landing-content p {
+    position: absolute;
+  top: 20px;
+  left: 20px;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+}
+
+.landing-content p:hover {
+    color: rgb(46, 46, 46);
+    transition: 0.4s ease;
 }
 
 .images {
@@ -28,15 +46,42 @@
 .react{
     color: #0C9FCB;
     text-shadow: 1px 1px 3px black;
-    font-size: 45px;
+    font-size: 49px;
 }
 
 .pokedex{
     color: red;
     text-shadow: 1px 1px 3px black;
-    font-size: 45px;
+    font-size: 49px;
 }
 
 img {
     width: 100px;
+    transition: all 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.1);
+    transition: 0.5s ease-in;
+}
+
+button {
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+
+    background: linear-gradient(90deg, #0C9FCB, red);
+    color: white;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
 }
