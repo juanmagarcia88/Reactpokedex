@@ -37,8 +37,13 @@
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    grid-template-columns: repeat(5, minmax(200px, 1fr));
     gap: 20px;
     text-align: center;
     padding: 50px 0;
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 40px;
 }

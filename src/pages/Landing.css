@@ -32,7 +32,7 @@
     transition: 0.4s ease;
 }
 
-.images {
+.images-div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,12 +55,12 @@
     font-size: 49px;
 }
 
-img {
+.landing-img {
     width: 100px;
     transition: all 0.3s ease;
 }
 
-img:hover {
+.landing-img:hover {
     transform: scale(1.1);
     transition: 0.5s ease-in;
 }
