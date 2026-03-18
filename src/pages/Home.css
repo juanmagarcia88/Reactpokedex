@@ -1,0 +1,36 @@
+.top-bar {
+    background-color: #313131;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    box-shadow: 1px 4px 5px gray;
+}
+
+.home-landing-h1 {
+    display: flex;
+    padding-left: 30px;
+}
+
+.home-react{
+    color: #0C9FCB;
+    text-shadow: 1px 1px 3px black;
+    font-size: 35px;
+}
+
+.home-pokedex{
+    color: red;
+    text-shadow: 1px 1px 3px black;
+    font-size: 35px;
+}
+
+.searcher {
+    color: white;
+    font-size: 20px;
+}
+
+#searcher {
+    font-size: 18px;
+    margin-left: 10px;
+}
