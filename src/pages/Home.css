@@ -16,13 +16,13 @@
 .home-react{
     color: #0C9FCB;
     text-shadow: 1px 1px 3px black;
-    font-size: 35px;
+    font-size: 38px;
 }
 
 .home-pokedex{
     color: red;
     text-shadow: 1px 1px 3px black;
-    font-size: 35px;
+    font-size: 38px;
 }
 
 .searcher {
@@ -31,19 +31,150 @@
 }
 
 #searcher {
-    font-size: 18px;
+    font-size: 20px;
     margin-left: 10px;
 }
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(5, minmax(200px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(5, 200px);
+    gap: 30px;
+    justify-content: center;
     text-align: center;
-    padding: 50px 0;
+    padding: 50px 30px;
+}
+
+.card {
+  width: 190px;
+  height: 200px;
+  border: 1px solid white;
+  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  border-radius: 17px;
+  cursor: pointer;
+  transition: all 0.5s;
+  color: rgb(40, 40, 40);
+}
+
+.fire:hover {
+    background-color: rgb(255, 166, 0, 30%);
+}
+
+.water:hover {
+    background-color: rgba(0, 115, 255, 0.3);
+}
+
+.grass:hover {
+    background-color: rgba(0, 200, 100, 0.3);
+}
+
+.electric:hover {
+    background-color: rgba(255, 220, 0, 0.3);
+}
+
+.ice:hover {
+    background-color: rgba(120, 220, 255, 0.3);
+}
+
+.fighting:hover {
+    background-color: rgba(200, 50, 50, 0.3);
+}
+
+.poison:hover {
+    background-color: rgba(170, 80, 200, 0.3);
+}
+
+.ground:hover {
+    background-color: rgba(200, 150, 100, 0.3);
+}
+
+.rock:hover {
+    background-color: rgba(180, 140, 100, 0.3);
+}
+
+.flying:hover {
+    background-color: rgba(150, 200, 255, 0.3);
+}
+
+.psychic:hover {
+    background-color: rgba(255, 100, 150, 0.3);
+}
+
+.bug:hover {
+    background-color: rgba(150, 200, 80, 0.3);
+}
+
+.ghost:hover {
+    background-color: rgba(130, 80, 200, 0.3);
+}
+
+.dragon:hover {
+    background-color: rgba(80, 100, 200, 0.3);
+}
+
+.dark:hover {
+    background-color: rgba(80, 80, 100, 0.3);
+}
+
+.steel:hover {
+    background-color: rgba(180, 180, 190, 0.3);
+}
+
+.fairy:hover {
+    background-color: rgba(255, 150, 200, 0.3);
+}
+
+.normal:hover {
+    background-color: rgba(180, 180, 180, 0.3);
+}
+
+.card:hover {
+  border: 1px solid black;
+  transform: scale(1.05);
+}
+
+.card:active {
+  transform: scale(0.95) rotateZ(1.7deg);
+}
+
+.card img {
+    width: 80%;
+    margin-bottom: -20px;
+}
+
+.card h2 {
+    font-weight: 400;
 }
 
 .pagination {
     text-align: center;
     margin-top: 40px;
+}
+
+.page {
+    font-size: 20px;
+    padding: 0 20px;
+}
+
+.pagination-button {
+    padding: 5px;
+    width: 100px;
+    font-size: 17px;
+    box-shadow: 02px 3px 5px rgb(166, 166, 166);
+    border-radius: 10px;
+    background-color: rgb(239, 239, 239);
+}
+
+.pagination-button:hover {
+    padding: 5px;
+    width: 100px;
+    font-size: 18px;
+    box-shadow: 02px 3px 5px rgb(166, 166, 166);
+    border-radius: 11px;
+    cursor: pointer;
+    background-color: rgb(231, 231, 231);
+}
+
+.pagination-button:active {
+    background-color: rgb(221, 221, 221);
 }

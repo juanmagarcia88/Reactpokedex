@@ -91,13 +91,17 @@ export default function Home() {
                     <button
                         onClick={() => setPage(page - 1)}
                         disabled={page === 0}
+                        className='pagination-button'
                     >
                         Previous
                     </button>
 
-                    <span>Page {page + 1}</span>
+                    <span className='page'>Page {page + 1}</span>
 
-                    <button onClick={() => setPage(page + 1)} disabled={page>=totalPages - 1}>
+                    <button onClick={() => setPage(page + 1)}
+                            disabled={page>=totalPages - 1}
+                            className='pagination-button'        
+                    >
                         Next
                     </button>
                 </div>
@@ -106,7 +110,7 @@ export default function Home() {
             <div className='cards'>
 
                 {allPokemon.map((poke, index) => (
-                    <div className='card' key={index}>
+                    <div className={`card ${poke.types[0].type.name}`} key={index}>
                         <img src={poke.sprites.front_default} />
                         <h2>{poke.name}</h2>
                     </div>
