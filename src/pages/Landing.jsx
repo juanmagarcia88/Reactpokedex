@@ -29,7 +29,7 @@ export default function Landing() {
                 </div>
 
                 <Link to="/home">
-                    <button>Enter</button>
+                    <button className='enter-button'>Enter</button>
                 </Link>
 
             </div>

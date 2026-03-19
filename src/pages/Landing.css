@@ -65,7 +65,7 @@
     transition: 0.5s ease-in;
 }
 
-button {
+.enter-button {
     padding: 12px 20px;
     border-radius: 25px;
     border: none;
@@ -81,7 +81,7 @@ button {
     transition: all 0.3s ease;
 }
 
-button:hover {
+.enter-button:hover {
     transform: translateY(-3px) scale(1.04);
     box-shadow: 0 6px 15px rgba(0,0,0,0.4);
 }

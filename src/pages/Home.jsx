@@ -7,6 +7,9 @@ export default function Home() {
     const [page, setPage] = useState(0)
     const [search, setSearch] = useState("")
     const [pokemonList, setPokemonList] = useState([])
+    const [totalPokemon, setTotalPokemon] = useState(0)
+
+    const totalPages = Math.ceil(totalPokemon / 40)
 
     useEffect(() => {
         const fetchNames = async () => {
@@ -57,6 +60,7 @@ export default function Home() {
                 }
 
                 setAllPokemon(pokemonArray)
+                setTotalPokemon(data.count)
 
             } catch (error) {
                 console.error("Error fetching Pokémon", error)
@@ -93,7 +97,7 @@ export default function Home() {
 
                     <span>Page {page + 1}</span>
 
-                    <button onClick={() => setPage(page + 1)}>
+                    <button onClick={() => setPage(page + 1)} disabled={page>=totalPages - 1}>
                         Next
                     </button>
                 </div>
