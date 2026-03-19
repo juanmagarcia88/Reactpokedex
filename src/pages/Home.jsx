@@ -5,6 +5,9 @@ export default function Home() {
 
     const [allPokemon, setAllPokemon] = useState([])
     const [page, setPage] = useState(0)
+    const [search, setSearch] = useState("")
+
+    const searchPokemon = allPokemon.filter(poke => poke.name.toLowerCase().includes(search.toLowerCase()))
 
     useEffect(() => {
 
@@ -40,6 +43,8 @@ export default function Home() {
 
     }, [page])
 
+    
+
     return (
         <main>
             <div className="top-bar">
@@ -50,7 +55,7 @@ export default function Home() {
 
                 <label className="searcher">
                     Search pokemon by name:
-                    <input id="searcher" type="text" />
+                    <input onChange={(e) => setSearch(e.target.value)} id="searcher" type="text" />
                 </label>
             </div>
 
@@ -71,7 +76,7 @@ export default function Home() {
 
             <div className='cards'>
 
-                {allPokemon.map((poke, index) => (
+                {searchPokemon.map((poke, index) => (
                     <div className='card' key={index}>
                         <img src={poke.sprites.front_default} />
                         <h2>{poke.name}</h2>
