@@ -6,12 +6,37 @@ export default function Home() {
     const [allPokemon, setAllPokemon] = useState([])
     const [page, setPage] = useState(0)
     const [search, setSearch] = useState("")
+    const [pokemonList, setPokemonList] = useState([])
 
-    const searchPokemon = allPokemon.filter(poke => poke.name.toLowerCase().includes(search.toLowerCase()))
+    useEffect(() => {
+        const fetchNames = async () => {
+            const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100000')
+            const data = await res.json()
+            setPokemonList(data.results)
+        }
+        fetchNames()
+    }, [])
 
     useEffect(() => {
 
         const fetchPokemon = async () => {
+
+            if (search) {
+
+                const filtered = pokemonList.filter(p => p.name.toLowerCase().includes(search.toLowerCase()))
+
+                const results = []
+
+                for (let p of filtered) {
+                    const response = await fetch(p.url)
+                    const data = await response.json()
+                    results.push(data)
+                }
+
+                setAllPokemon(results)
+
+                return
+            }
 
             const pokemonArray = []
 
@@ -41,9 +66,7 @@ export default function Home() {
 
         fetchPokemon()
 
-    }, [page])
-
-    
+    }, [page, search, pokemonList])
 
     return (
         <main>
@@ -59,24 +82,26 @@ export default function Home() {
                 </label>
             </div>
 
-            <div className="pagination">
-                <button 
-                    onClick={() => setPage(page - 1)} 
-                    disabled={page === 0}
-                >
-                    Previous
-                </button>
+            {!search && (
+                <div className="pagination">
+                    <button
+                        onClick={() => setPage(page - 1)}
+                        disabled={page === 0}
+                    >
+                        Previous
+                    </button>
 
-                <span>Page {page + 1}</span>
+                    <span>Page {page + 1}</span>
 
-                <button onClick={() => setPage(page + 1)}>
-                    Next
-                </button>
-            </div>
+                    <button onClick={() => setPage(page + 1)}>
+                        Next
+                    </button>
+                </div>
+            )}
 
             <div className='cards'>
 
-                {searchPokemon.map((poke, index) => (
+                {allPokemon.map((poke, index) => (
                     <div className='card' key={index}>
                         <img src={poke.sprites.front_default} />
                         <h2>{poke.name}</h2>
