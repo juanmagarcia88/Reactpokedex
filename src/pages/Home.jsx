@@ -8,6 +8,7 @@ export default function Home() {
     const [search, setSearch] = useState("")
     const [pokemonList, setPokemonList] = useState([])
     const [totalPokemon, setTotalPokemon] = useState(0)
+    const [type, setType] = useState("")
 
     const totalPages = Math.ceil(totalPokemon / 40)
 
@@ -24,16 +25,24 @@ export default function Home() {
 
         const fetchPokemon = async () => {
 
-            if (search) {
+            if (search || type) {
 
-                const filtered = pokemonList.filter(p => p.name.toLowerCase().includes(search.toLowerCase()))
+                let filtered = pokemonList
+
+                if (search) {
+                    filtered = filtered.filter(p =>
+                        p.name.toLowerCase().includes(search.toLowerCase())
+                    )
+                }
 
                 const results = []
 
                 for (let p of filtered) {
                     const response = await fetch(p.url)
                     const data = await response.json()
-                    results.push(data)
+                    if (!type || data.types.some(t => t.type.name === type)) {
+                        results.push(data)
+                    }
                 }
 
                 setAllPokemon(results)
@@ -70,7 +79,7 @@ export default function Home() {
 
         fetchPokemon()
 
-    }, [page, search, pokemonList])
+    }, [page, search, pokemonList, type])
 
     return (
         <main>
@@ -80,10 +89,33 @@ export default function Home() {
                     <h1 className='home-pokedex'>Pokedex</h1>
                 </div>
 
-                <label className="searcher">
-                    Search pokemon by name:
-                    <input onChange={(e) => setSearch(e.target.value)} id="searcher" type="text" />
-                </label>
+                <div className='filters'>
+                    <label className="searcher">
+                        Search pokemon by name:
+                        <input onChange={(e) => setSearch(e.target.value)} id="searcher" type="text" />
+                    </label>
+                    <select className='types' onChange={(e) => setType(e.target.value)}>
+                        <option value="">All types</option>
+                        <option value="normal">Normal</option>
+                        <option value="fire">Fire</option>
+                        <option value="water">Water</option>
+                        <option value="grass">Grass</option>
+                        <option value="electric">Electric</option>
+                        <option value="ice">Ice</option>
+                        <option value="fighting">Fighting</option>
+                        <option value="poison">Poison</option>
+                        <option value="ground">Ground</option>
+                        <option value="rock">Rock</option>
+                        <option value="flying">Flying</option>
+                        <option value="psychic">Psychic</option>
+                        <option value="bug">Bug</option>
+                        <option value="ghost">Ghost</option>
+                        <option value="dragon">Dragon</option>
+                        <option value="dark">Dark</option>
+                        <option value="steel">Steel</option>
+                        <option value="fairy">Fairy</option>
+                    </select>
+                </div>
             </div>
 
             {!search && (
@@ -99,8 +131,8 @@ export default function Home() {
                     <span className='page'>Page {page + 1}</span>
 
                     <button onClick={() => setPage(page + 1)}
-                            disabled={page>=totalPages - 1}
-                            className='pagination-button'        
+                        disabled={page >= totalPages - 1}
+                        className='pagination-button'
                     >
                         Next
                     </button>

@@ -25,6 +25,12 @@
     font-size: 38px;
 }
 
+.filters {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 .searcher {
     color: white;
     font-size: 20px;
@@ -33,6 +39,33 @@
 #searcher {
     font-size: 20px;
     margin-left: 10px;
+    border: 2px solid transparent;
+  width: 250px;
+  height: 40px;
+  padding-left: 0.8em;
+  outline: none;
+  overflow: hidden;
+  background-color: #F3F3F3;
+  border-radius: 10px;
+  transition: all 0.5s;
+
+}
+
+#searcher:focus, #searcher:hover {
+    border: 2px solid #ec4a4a;
+  box-shadow: 0px 0px 0px 7px rgba(255, 130, 130, 0.2);
+  background-color: white;
+}
+
+.types {
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.types:focus, .types:hover {
+    border: 1px solid #ec4a4a;
+  box-shadow: 0px 0px 0px 4px rgba(255, 130, 130, 0.2);
+  background-color: white;
 }
 
 .cards {
@@ -129,7 +162,7 @@
 }
 
 .card:hover {
-  border: 1px solid black;
+  border: 1px solid rgb(255, 255, 255);
   transform: scale(1.05);
 }
 
@@ -159,22 +192,32 @@
 .pagination-button {
     padding: 5px;
     width: 100px;
-    font-size: 17px;
+    font-size: 18px;
     box-shadow: 02px 3px 5px rgb(166, 166, 166);
     border-radius: 10px;
-    background-color: rgb(239, 239, 239);
+    background-color: rgb(47, 47, 47);
+    transition: all 0.3s;
+    will-change: transform;
+    color: white;
 }
 
 .pagination-button:hover {
     padding: 5px;
     width: 100px;
-    font-size: 18px;
-    box-shadow: 02px 3px 5px rgb(166, 166, 166);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     border-radius: 11px;
     cursor: pointer;
-    background-color: rgb(231, 231, 231);
+    background-color: #616161;
+    transform: translateY(-2px);
 }
 
 .pagination-button:active {
-    background-color: rgb(221, 221, 221);
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pagination-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
 }
