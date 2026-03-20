@@ -79,7 +79,7 @@
 
 .card {
   width: 190px;
-  height: 200px;
+  height: 230px;
   border: 1px solid white;
   box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
   backdrop-filter: blur(6px);
@@ -172,11 +172,11 @@
 
 .card img {
     width: 80%;
-    margin-bottom: -20px;
 }
 
 .card h2 {
     font-weight: 400;
+    padding: 0 10px;
 }
 
 .pagination {

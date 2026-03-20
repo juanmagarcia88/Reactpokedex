@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import pokedex from '../assets/pokedex.png'
 import './Home.css'
 
 export default function Home() {
@@ -143,7 +144,7 @@ export default function Home() {
 
                 {allPokemon.map((poke, index) => (
                     <div className={`card ${poke.types[0].type.name}`} key={index}>
-                        <img src={poke.sprites.front_default} />
+                        <img src={poke.sprites.front_default || poke.sprites.other["official-artwork"].front_default || pokedex} />
                         <h2>{poke.name}</h2>
                     </div>
                 ))}
