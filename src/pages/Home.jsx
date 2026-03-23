@@ -10,8 +10,20 @@ export default function Home() {
     const [pokemonList, setPokemonList] = useState([])
     const [totalPokemon, setTotalPokemon] = useState(0)
     const [type, setType] = useState("")
+    const [favorites, setFavorites] = useState([])
+    const [showFavs, setShowFavs] = useState(false)
 
     const totalPages = Math.ceil(totalPokemon / 40)
+
+    const displayPokemon = showFavs ? favorites : allPokemon
+
+    const toggleFavorite = (pokemon) => {
+        if (favorites.find(f => f.id === pokemon.id)) {
+            setFavorites(favorites.filter(f => f.id !== pokemon.id))
+        } else {
+            setFavorites([...favorites, pokemon])
+        }
+    }
 
     useEffect(() => {
         const fetchNames = async () => {
@@ -90,6 +102,12 @@ export default function Home() {
                     <h1 className='home-pokedex'>Pokedex</h1>
                 </div>
 
+                <div>
+                    <h2 className='favorites-h2' onClick={() => setShowFavs(!showFavs)}>
+                        {showFavs ? "All Pokemon" : "Favorites ⭐"}
+                    </h2>
+                </div>
+
                 <div className='filters'>
                     <label className="searcher">
                         Search pokemon by name:
@@ -142,12 +160,19 @@ export default function Home() {
 
             <div className='cards'>
 
-                {allPokemon.map((poke, index) => (
+                {displayPokemon.map((poke, index) => (
                     <div className={`card ${poke.types[0].type.name}`} key={index}>
+                    <span className='fav-star' onClick={() => toggleFavorite(poke)}>
+                        {favorites.find(f => f.id === poke.id) ? "⭐" : "☆"}
+                    </span>
                         <img src={poke.sprites.front_default || poke.sprites.other["official-artwork"].front_default || pokedex} />
                         <h2>{poke.name}</h2>
                     </div>
                 ))}
+
+                {showFavs && favorites.length === 0 && (
+                    <p>You don't have any favorites yet</p>
+                )}
 
             </div>
 

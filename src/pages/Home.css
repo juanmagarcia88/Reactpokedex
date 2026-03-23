@@ -25,6 +25,21 @@
     font-size: 38px;
 }
 
+.favorites-h2 {
+    cursor: pointer;
+    color: rgb(255, 255, 155);
+    font-weight: 300;
+    transition: all 0.3s ease;
+        will-change: transform;
+
+}
+
+.favorites-h2:hover {
+    cursor: pointer;
+    color: rgb(255, 255, 101);
+    transform: scale(1.05);
+}
+
 .filters {
     display: flex;
     align-items: center;
@@ -75,6 +90,14 @@
     justify-content: center;
     text-align: center;
     padding: 50px 30px;
+}
+
+.fav-star {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .card {
@@ -208,7 +231,7 @@
     border-radius: 11px;
     cursor: pointer;
     background-color: #616161;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
 }
 
 .pagination-button:active {
