@@ -12,6 +12,7 @@ export default function Home() {
     const [type, setType] = useState("")
     const [favorites, setFavorites] = useState([])
     const [showFavs, setShowFavs] = useState(false)
+    const [selectedPokemon, setSelectedPokemon] = useState(null)
 
     const totalPages = Math.ceil(totalPokemon / 40)
 
@@ -161,10 +162,10 @@ export default function Home() {
             <div className='cards'>
 
                 {displayPokemon.map((poke, index) => (
-                    <div className={`card ${poke.types[0].type.name}`} key={index}>
-                    <span className='fav-star' onClick={() => toggleFavorite(poke)}>
-                        {favorites.find(f => f.id === poke.id) ? "⭐" : "☆"}
-                    </span>
+                    <div onClick={() => setSelectedPokemon(poke)} className={`card ${poke.types[0].type.name}`} key={index}>
+                        <span className='fav-star' onClick={(e) => { e.stopPropagation(); toggleFavorite(poke) }}>
+                            {favorites.find(f => f.id === poke.id) ? "⭐" : "☆"}
+                        </span>
                         <img src={poke.sprites.front_default || poke.sprites.other["official-artwork"].front_default || pokedex} />
                         <h2>{poke.name}</h2>
                     </div>
@@ -175,6 +176,43 @@ export default function Home() {
                 )}
 
             </div>
+
+            {selectedPokemon && (
+                <div className='modal-overlay'>
+                    <div className="modal" onClick={(e) => e.stopPropagation()}>
+                        <h1>{selectedPokemon.name}</h1>
+                        <div className='pokemon-info'>
+                            <h2>Info:</h2>
+                            <p>ID: #{selectedPokemon.id}</p>
+                            <p>Height: {selectedPokemon.height}</p>
+                            <p>Weight: {selectedPokemon.weight}</p>
+                        </div>
+                        <div className='pokemon-stats'>
+                            <h2>Stats:</h2>
+                            {selectedPokemon.stats.map(stat => (
+                                <p key={stat.stat.name}>
+                                    {stat.stat.name}: {stat.base_stat}
+                                </p>
+                            ))}
+                        </div>
+                        <div className='pokemon-types'>
+                            <h2>Types:</h2>
+                            {selectedPokemon.types.map(t => (
+                                <span key={t.type.name}>{t.type.name}</span>
+                            ))}
+                        </div>
+                        <div className='pokemon-abilities'>
+                            <h2>Abilities:</h2>
+                            {selectedPokemon.abilities.map(a => (
+                                <p key={a.ability.name}>
+                                    {a.ability.name}
+                                </p>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            )}
+
 
         </main>
     )
