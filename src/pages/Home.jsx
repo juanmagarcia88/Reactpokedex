@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import pokedex from '../assets/pokedex.png'
 import './Home.css'
 
@@ -98,10 +99,12 @@ export default function Home() {
     return (
         <main>
             <div className="top-bar">
-                <div className='home-landing-h1'>
-                    <h1 className='home-react'>React</h1>
-                    <h1 className='home-pokedex'>Pokedex</h1>
-                </div>
+                <Link to="/">
+                    <div className='home-landing-h1'>
+                        <h1 className='home-react'>React</h1>
+                        <h1 className='home-pokedex'>Pokedex</h1>
+                    </div>
+                </Link>
 
                 <div>
                     <h2 className='favorites-h2' onClick={() => setShowFavs(!showFavs)}>
@@ -167,7 +170,7 @@ export default function Home() {
                             {favorites.find(f => f.id === poke.id) ? "⭐" : "☆"}
                         </span>
                         <img src={poke.sprites.front_default || poke.sprites.other["official-artwork"].front_default || pokedex} />
-                        <h2>{poke.name}</h2>
+                        <h2>{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</h2>
                     </div>
                 ))}
 
@@ -180,32 +183,33 @@ export default function Home() {
             {selectedPokemon && (
                 <div className='modal-overlay'>
                     <div className="modal" onClick={(e) => e.stopPropagation()}>
-                        <h1>{selectedPokemon.name}</h1>
+                        <p onClick={() => setSelectedPokemon(0)} className='close-modal'>X</p>
+                        <h1>{selectedPokemon.name.charAt(0).toUpperCase() + selectedPokemon.name.slice(1)}</h1>
                         <div className='pokemon-info'>
                             <h2>Info:</h2>
                             <p>ID: #{selectedPokemon.id}</p>
-                            <p>Height: {selectedPokemon.height}</p>
-                            <p>Weight: {selectedPokemon.weight}</p>
+                            <p>Height: {selectedPokemon.height} m</p>
+                            <p>Weight: {selectedPokemon.weight} kg</p>
                         </div>
                         <div className='pokemon-stats'>
                             <h2>Stats:</h2>
                             {selectedPokemon.stats.map(stat => (
                                 <p key={stat.stat.name}>
-                                    {stat.stat.name}: {stat.base_stat}
+                                    {stat.stat.name.charAt(0).toUpperCase() + stat.stat.name.slice(1)}: {stat.base_stat}
                                 </p>
                             ))}
                         </div>
                         <div className='pokemon-types'>
                             <h2>Types:</h2>
                             {selectedPokemon.types.map(t => (
-                                <span key={t.type.name}>{t.type.name}</span>
+                                <p key={t.type.name}>{t.type.name.charAt(0).toUpperCase() + t.type.name.slice(1)}</p>
                             ))}
                         </div>
                         <div className='pokemon-abilities'>
                             <h2>Abilities:</h2>
                             {selectedPokemon.abilities.map(a => (
                                 <p key={a.ability.name}>
-                                    {a.ability.name}
+                                    {a.ability.name.charAt(0).toUpperCase() + a.ability.name.slice(1)}
                                 </p>
                             ))}
                         </div>
