@@ -11,7 +11,14 @@ export default function Home() {
     const [pokemonList, setPokemonList] = useState([])
     const [totalPokemon, setTotalPokemon] = useState(0)
     const [type, setType] = useState("")
-    const [favorites, setFavorites] = useState([])
+    const [favorites, setFavorites] = useState(() => {
+        try {
+            const saved = localStorage.getItem("favorites")
+            return saved ? JSON.parse(saved) : []
+        } catch {
+            return []
+        }
+    })
     const [showFavs, setShowFavs] = useState(false)
     const [selectedPokemon, setSelectedPokemon] = useState(null)
 
@@ -26,6 +33,10 @@ export default function Home() {
             setFavorites([...favorites, pokemon])
         }
     }
+
+    useEffect(() => {
+        localStorage.setItem("favorites", JSON.stringify(favorites))
+    }, [favorites])
 
     useEffect(() => {
         const fetchNames = async () => {
