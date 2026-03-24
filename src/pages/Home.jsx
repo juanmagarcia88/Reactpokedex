@@ -183,7 +183,7 @@ export default function Home() {
             {selectedPokemon && (
                 <div className='modal-overlay'>
                     <div className="modal" onClick={(e) => e.stopPropagation()}>
-                        <p onClick={() => setSelectedPokemon(0)} className='close-modal'>X</p>
+                        <p onClick={() => setSelectedPokemon(null)} className='close-modal'>X</p>
                         <h1>{selectedPokemon.name.charAt(0).toUpperCase() + selectedPokemon.name.slice(1)}</h1>
                         <div className='pokemon-info'>
                             <h2>Info:</h2>
