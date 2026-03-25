@@ -11,6 +11,7 @@ export default function Home() {
     const [pokemonList, setPokemonList] = useState([])
     const [totalPokemon, setTotalPokemon] = useState(0)
     const [type, setType] = useState("")
+    const [loading, setLoading] = useState(true)
     const [favorites, setFavorites] = useState(() => {
         try {
             const saved = localStorage.getItem("favorites")
@@ -51,34 +52,36 @@ export default function Home() {
 
         const fetchPokemon = async () => {
 
-            if (search || type) {
-
-                let filtered = pokemonList
-
-                if (search) {
-                    filtered = filtered.filter(p =>
-                        p.name.toLowerCase().includes(search.toLowerCase())
-                    )
-                }
-
-                const results = await Promise.all(
-                    filtered.map(async (p) => {
-                        const res = await fetch(p.url)
-                        const data = await res.json()
-                        return data
-                    })
-                )
-
-                const filteredByType = results.filter(data =>
-                    !type || data.types.some(t => t.type.name === type)
-                )
-
-                setAllPokemon(filteredByType)
-
-                return
-            }
+            setLoading(true)
 
             try {
+                
+                if (search || type) {
+
+                    let filtered = pokemonList
+
+                    if (search) {
+                        filtered = filtered.filter(p =>
+                            p.name.toLowerCase().includes(search.toLowerCase())
+                        )
+                    }
+
+                    const results = await Promise.all(
+                        filtered.map(async (p) => {
+                            const res = await fetch(p.url)
+                            const data = await res.json()
+                            return data
+                        })
+                    )
+
+                    const filteredByType = results.filter(data =>
+                        !type || data.types.some(t => t.type.name === type)
+                    )
+
+                    setAllPokemon(filteredByType)
+
+                    return
+                }
 
                 const response = await fetch(
                     `https://pokeapi.co/api/v2/pokemon?limit=40&offset=${page * 40}`
@@ -97,7 +100,9 @@ export default function Home() {
                 setTotalPokemon(data.count)
 
             } catch (error) {
-                console.error("Error fetching Pokémon", error)
+                console.error("Error fetching Pokemon", error)
+            } finally {
+                setLoading(false)
             }
 
         }
@@ -172,23 +177,29 @@ export default function Home() {
                 </div>
             )}
 
-            <div className='cards'>
+            {loading ? (
+                <p className='loading'>Loading...</p>
+            ) : (
 
-                {displayPokemon.map((poke, index) => (
-                    <div onClick={() => setSelectedPokemon(poke)} className={`card ${poke.types[0].type.name}`} key={index}>
-                        <span className='fav-star' onClick={(e) => { e.stopPropagation(); toggleFavorite(poke) }}>
-                            {favorites.find(f => f.id === poke.id) ? "⭐" : "☆"}
-                        </span>
-                        <img src={poke.sprites.front_default || poke.sprites.other["official-artwork"].front_default || pokedex} />
-                        <h2>{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</h2>
-                    </div>
-                ))}
+                <div className='cards'>
 
-                {showFavs && favorites.length === 0 && (
-                    <p>You don't have any favorites yet</p>
-                )}
+                    {displayPokemon.map((poke) => (
+                        <div onClick={() => setSelectedPokemon(poke)} className={`card ${poke.types[0].type.name}`} key={poke.id}>
+                            <span className='fav-star' onClick={(e) => { e.stopPropagation(); toggleFavorite(poke) }}>
+                                {favorites.find(f => f.id === poke.id) ? "⭐" : "☆"}
+                            </span>
+                            <img src={poke.sprites.front_default || poke.sprites.other["official-artwork"].front_default || pokedex} />
+                            <h2>{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</h2>
+                        </div>
+                    ))}
 
-            </div>
+                    {showFavs && favorites.length === 0 && (
+                        <p>You don't have any favorites yet</p>
+                    )}
+
+                </div>
+
+            )}
 
             {selectedPokemon && (
                 <div className='modal-overlay'>
