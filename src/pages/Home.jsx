@@ -199,8 +199,8 @@ export default function Home() {
                         <div className='pokemon-info'>
                             <h2>Info:</h2>
                             <p>ID: #{selectedPokemon.id}</p>
-                            <p>Height: {selectedPokemon.height} m</p>
-                            <p>Weight: {selectedPokemon.weight} kg</p>
+                            <p>Height: {selectedPokemon.height / 10} m</p>
+                            <p>Weight: {selectedPokemon.weight / 10} kg</p>
                         </div>
                         <div className='pokemon-stats'>
                             <h2>Stats:</h2>
