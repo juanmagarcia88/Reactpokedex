@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { PokemonCard } from '../components/PokemonCard'
 import { PokemonModal } from '../components/PokemonModal'
+import { Pagination } from '../components/Pagination'
 import './Home.css'
 
 export default function Home() {
@@ -161,24 +162,11 @@ export default function Home() {
             </div>
 
             {!isFiltering && (
-                <div className="pagination">
-                    <button
-                        onClick={() => setPage(page - 1)}
-                        disabled={page === 0}
-                        className='pagination-button'
-                    >
-                        Previous
-                    </button>
-
-                    <span className='page'>Page {page + 1}</span>
-
-                    <button onClick={() => setPage(page + 1)}
-                        disabled={page >= totalPages - 1}
-                        className='pagination-button'
-                    >
-                        Next
-                    </button>
-                </div>
+                <Pagination
+                    page={page}
+                    setPage={setPage}
+                    totalPages={totalPages}
+                />
             )}
 
             {loading ? (
