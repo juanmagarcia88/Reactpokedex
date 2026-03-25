@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import pokedex from '../assets/pokedex.png'
+import { PokemonCard } from '../components/PokemonCard'
 import './Home.css'
 
 export default function Home() {
@@ -156,7 +156,7 @@ export default function Home() {
                         {showFavs ? "All Pokemon" : "Favorites ⭐"}
                     </h2>
                 </div>
-                
+
             </div>
 
             {!isFiltering && (
@@ -187,13 +187,13 @@ export default function Home() {
                 <div className='cards'>
 
                     {displayPokemon.map((poke) => (
-                        <div onClick={() => setSelectedPokemon(poke)} className={`card ${poke.types[0].type.name}`} key={poke.id}>
-                            <span className='fav-star' onClick={(e) => { e.stopPropagation(); toggleFavorite(poke) }}>
-                                {favorites.find(f => f.id === poke.id) ? "⭐" : "☆"}
-                            </span>
-                            <img src={poke.sprites.front_default || poke.sprites.other["official-artwork"].front_default || pokedex} />
-                            <h2>{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</h2>
-                        </div>
+                        <PokemonCard
+                            key={poke.id}
+                            pokemon={poke}
+                            onSelect={setSelectedPokemon}
+                            onFavorite={toggleFavorite}
+                            isFavorite={favorites.find(f => f.id === poke.id)}
+                        />
                     ))}
 
                     {showFavs && favorites.length === 0 && (
