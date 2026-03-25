@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { PokemonCard } from '../components/PokemonCard'
 import { PokemonModal } from '../components/PokemonModal'
 import { Pagination } from '../components/Pagination'

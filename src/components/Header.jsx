@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export function Header({search, setSearch, type, setType, setShowFavs, showFavs}) {
     return (
         <div className="top-bar">
