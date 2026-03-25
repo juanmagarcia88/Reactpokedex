@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { PokemonCard } from '../components/PokemonCard'
+import { PokemonModal } from '../components/PokemonModal'
 import './Home.css'
 
 export default function Home() {
@@ -205,40 +206,10 @@ export default function Home() {
             )}
 
             {selectedPokemon && (
-                <div onClick={() => setSelectedPokemon(null)} className='modal-overlay'>
-                    <div className="modal" onClick={(e) => e.stopPropagation()}>
-                        <p onClick={() => setSelectedPokemon(null)} className='close-modal'>X</p>
-                        <h1>{selectedPokemon.name.charAt(0).toUpperCase() + selectedPokemon.name.slice(1)}</h1>
-                        <div className='pokemon-info'>
-                            <h2>Info:</h2>
-                            <p>ID: #{selectedPokemon.id}</p>
-                            <p>Height: {selectedPokemon.height / 10} m</p>
-                            <p>Weight: {selectedPokemon.weight / 10} kg</p>
-                        </div>
-                        <div className='pokemon-stats'>
-                            <h2>Stats:</h2>
-                            {selectedPokemon.stats.map(stat => (
-                                <p key={stat.stat.name}>
-                                    {stat.stat.name.charAt(0).toUpperCase() + stat.stat.name.slice(1)}: {stat.base_stat}
-                                </p>
-                            ))}
-                        </div>
-                        <div className='pokemon-types'>
-                            <h2>Types:</h2>
-                            {selectedPokemon.types.map(t => (
-                                <p key={t.type.name}>{t.type.name.charAt(0).toUpperCase() + t.type.name.slice(1)}</p>
-                            ))}
-                        </div>
-                        <div className='pokemon-abilities'>
-                            <h2>Abilities:</h2>
-                            {selectedPokemon.abilities.map(a => (
-                                <p key={a.ability.name}>
-                                    {a.ability.name.charAt(0).toUpperCase() + a.ability.name.slice(1)}
-                                </p>
-                            ))}
-                        </div>
-                    </div>
-                </div>
+                <PokemonModal
+                    pokemon={selectedPokemon}
+                    onClose={() => setSelectedPokemon(null)}
+                />
             )}
 
 
