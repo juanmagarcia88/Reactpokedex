@@ -27,6 +27,8 @@ export default function Home() {
 
     const displayPokemon = showFavs ? favorites : allPokemon
 
+    const isFiltering = search || type
+
     const toggleFavorite = (pokemon) => {
         if (favorites.find(f => f.id === pokemon.id)) {
             setFavorites(favorites.filter(f => f.id !== pokemon.id))
@@ -55,7 +57,7 @@ export default function Home() {
             setLoading(true)
 
             try {
-                
+
                 if (search || type) {
 
                     let filtered = pokemonList
@@ -121,12 +123,6 @@ export default function Home() {
                     </div>
                 </Link>
 
-                <div>
-                    <h2 className='favorites-h2' onClick={() => setShowFavs(!showFavs)}>
-                        {showFavs ? "All Pokemon" : "Favorites ⭐"}
-                    </h2>
-                </div>
-
                 <div className='filters'>
                     <label className="searcher">
                         Search pokemon by name:
@@ -154,9 +150,16 @@ export default function Home() {
                         <option value="fairy">Fairy</option>
                     </select>
                 </div>
+
+                <div>
+                    <h2 className='favorites-h2' onClick={() => setShowFavs(!showFavs)}>
+                        {showFavs ? "All Pokemon" : "Favorites ⭐"}
+                    </h2>
+                </div>
+                
             </div>
 
-            {!search && (
+            {!isFiltering && (
                 <div className="pagination">
                     <button
                         onClick={() => setPage(page - 1)}
@@ -202,7 +205,7 @@ export default function Home() {
             )}
 
             {selectedPokemon && (
-                <div className='modal-overlay'>
+                <div onClick={() => setSelectedPokemon(null)} className='modal-overlay'>
                     <div className="modal" onClick={(e) => e.stopPropagation()}>
                         <p onClick={() => setSelectedPokemon(null)} className='close-modal'>X</p>
                         <h1>{selectedPokemon.name.charAt(0).toUpperCase() + selectedPokemon.name.slice(1)}</h1>

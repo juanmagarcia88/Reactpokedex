@@ -34,6 +34,7 @@ a {
     cursor: pointer;
     color: rgb(255, 255, 155);
     font-weight: 300;
+    font-size: 20px;
     transition: all 0.3s ease;
     will-change: transform;
 
@@ -81,6 +82,7 @@ a {
 .types {
     padding: 5px;
     border-radius: 10px;
+    transition: all 0.5s;
 }
 
 .types:focus,
