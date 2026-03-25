@@ -61,22 +61,22 @@ export default function Home() {
                     )
                 }
 
-                const results = []
+                const results = await Promise.all(
+                    filtered.map(async (p) => {
+                        const res = await fetch(p.url)
+                        const data = await res.json()
+                        return data
+                    })
+                )
 
-                for (let p of filtered) {
-                    const response = await fetch(p.url)
-                    const data = await response.json()
-                    if (!type || data.types.some(t => t.type.name === type)) {
-                        results.push(data)
-                    }
-                }
+                const filteredByType = results.filter(data =>
+                    !type || data.types.some(t => t.type.name === type)
+                )
 
-                setAllPokemon(results)
+                setAllPokemon(filteredByType)
 
                 return
             }
-
-            const pokemonArray = []
 
             try {
 
@@ -86,13 +86,12 @@ export default function Home() {
 
                 const data = await response.json()
 
-                for (let poke of data.results) {
-
-                    const res = await fetch(poke.url)
-                    const pokeData = await res.json()
-
-                    pokemonArray.push(pokeData)
-                }
+                const pokemonArray = await Promise.all(
+                    data.results.map(async (poke) => {
+                        const res = await fetch(poke.url)
+                        return res.json()
+                    })
+                )
 
                 setAllPokemon(pokemonArray)
                 setTotalPokemon(data.count)
