@@ -353,6 +353,65 @@ a {
     margin-bottom: 5px;
 }
 
+@media (max-width: 480px) {
+
+    .home-react,    
+    .home-pokedex {
+        font-size: 35px;
+    }
+
+    .filters {
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+
+    #searcher {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .types {
+        width: 20%;
+        height: 30px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+
+    .card {
+        width: 100%;
+        height: auto;
+        min-height: 150px;
+    }
+
+    .card img {
+        width: 70%;
+        margin-bottom: -10px;
+    }
+
+    .card h2 {
+        font-size: 18px;
+    }
+
+    .modal {
+        width: 75%;
+        padding: 20px 15px;
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+
+    .close-modal {
+        position: absolute;
+        top: 15px;
+        left: 295px;
+    }
+
+}
+
 @media (max-width: 768px) {
     .cards {
         grid-template-columns: repeat(2, minmax(150px, 200px));

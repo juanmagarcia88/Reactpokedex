@@ -1,13 +1,13 @@
 .landing {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .landing-content {
@@ -21,10 +21,10 @@
 
 .landing-content p {
     position: absolute;
-  top: 20px;
-  left: 20px;
-  color: rgb(0, 0, 0);
-  font-size: 16px;
+    top: 20px;
+    left: 20px;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
 }
 
 .landing-content p:hover {
@@ -36,20 +36,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-   gap: 30px;
+    gap: 30px;
 }
 
 .landing-h1 {
     display: flex;
 }
 
-.react{
+.react {
     color: #0C9FCB;
     text-shadow: 1px 1px 3px black;
     font-size: 49px;
 }
 
-.pokedex{
+.pokedex {
     color: red;
     text-shadow: 1px 1px 3px black;
     font-size: 49px;
@@ -75,7 +75,7 @@
     background: linear-gradient(90deg, #0C9FCB, red);
     color: white;
 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     cursor: pointer;
 
     transition: all 0.3s ease;
@@ -83,5 +83,41 @@
 
 .enter-button:hover {
     transform: translateY(-3px) scale(1.04);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 480px) {
+
+    .landing {
+        padding-bottom: 80px;
+    }
+
+    .landing-content {
+        margin-top: -350px;
+    }
+
+    .landing-content p {
+        font-size: 14px;
+        top: 10px;
+        left: 10px;
+    }
+
+    .landing-h1 .react,
+    .landing-h1 .pokedex {
+        font-size: 40px;
+    }
+
+    .landing-img {
+        width: 80px;
+    }
+
+    .images-div {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .enter-button {
+        padding: 10px 16px;
+        font-size: 16px;
+    }
 }
