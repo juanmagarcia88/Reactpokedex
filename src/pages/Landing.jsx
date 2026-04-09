@@ -12,14 +12,14 @@ export default function Landing() {
         >
 
             <div className='landing-content'>
-                <a href='https://github.com/juanmagarcia88' target='_blank'>
+                <a href='https://github.com/juanmagarcia88' target='_blank' rel="noopener noreferrer">
                     <p>Create by: juanmagarcia88</p>
                 </a>
                 <div className='images-div'>
-                    <a href='https://es.react.dev/' target='_blank'>
+                    <a href='https://es.react.dev/' target='_blank' rel="noopener noreferrer">
                         <img className='landing-img' src={reactIcon} alt="Icono de react"></img>
                     </a>
-                    <a href='https://www.pokemon.com/es/pokedex' target='_blank'>
+                    <a href='https://www.pokemon.com/es/pokedex' target='_blank' rel="noopener noreferrer">
                         <img className='landing-img' src={pokedex} alt="Pokedex"></img>
                     </a>
                 </div>

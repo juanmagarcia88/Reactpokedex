@@ -3,7 +3,7 @@ import { capitalize } from '../utils/capitalize';
 
 export function PokemonCard({ pokemon, onSelect, onFavorite, isFavorite }) {
     return (
-        <div onClick={() => onSelect(pokemon)} className={`card ${pokemon.types[0].type.name}`} key={pokemon.id}>
+        <div onClick={() => onSelect(pokemon)} className={`card ${pokemon.types[0].type.name}`}>
             <span className='fav-star' onClick={(e) => { e.stopPropagation(); onFavorite(pokemon) }}>
                 {isFavorite ? "⭐" : "☆"}
             </span>
