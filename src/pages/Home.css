@@ -1,10 +1,10 @@
 .top-bar {
     background-color: #313131;
-    height: 150px;
+    min-height: 150px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 30px;
+    padding: 20px 30px;
     box-shadow: 1px 4px 5px gray;
 }
 
@@ -58,7 +58,7 @@ a {
 }
 
 #searcher {
-    font-size: 20px;
+    font-size: 18px;
     margin-left: 10px;
     border: 2px solid transparent;
     width: 250px;
@@ -69,7 +69,6 @@ a {
     background-color: #F3F3F3;
     border-radius: 10px;
     transition: all 0.5s;
-
 }
 
 #searcher:focus,
@@ -100,7 +99,7 @@ a {
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(5, 200px);
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 30px;
     justify-content: center;
     text-align: center;
@@ -348,4 +347,54 @@ a {
     padding: 5px 10px;
     border-radius: 10px;
     margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: repeat(2, minmax(150px, 200px));
+        justify-content: center;
+    }
+
+    .card {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 1024px) {
+    .top-bar {
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 10px;
+    }
+
+    .home-landing-h1 {
+        padding-left: 0;
+    }
+
+    .filters {
+        gap: 10px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    #searcher {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 1120px) {
+    .searcher {
+        font-size: 0;
+    }
+
+    .searcher input {
+        font-size: 16px;
+    }
+
+    #searcher {
+        max-width: 220px;
+        height: 35px;
+        font-size: 16px;
+    }
 }

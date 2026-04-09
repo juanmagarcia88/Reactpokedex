@@ -13,7 +13,7 @@ export function Header({search, setSearch, type, setType, setShowFavs, showFavs}
             <div className='filters'>
                 <label className="searcher">
                     Search pokemon by name:
-                    <input value={search} onChange={(e) => setSearch(e.target.value)} id="searcher" type="text" />
+                    <input value={search} onChange={(e) => setSearch(e.target.value)} id="searcher" type="text" placeholder='Search Pokemon'/>
                 </label>
                 <select className='types' value={type} onChange={(e) => setType(e.target.value)}>
                     <option value="">All types</option>
