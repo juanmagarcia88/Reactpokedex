@@ -13,6 +13,10 @@
     padding-left: 30px;
 }
 
+.home-landing-h1 h1 {
+    margin-top: -6px;
+}
+
 .home-react {
     color: #0C9FCB;
     text-shadow: 1px 1px 3px black;
@@ -37,7 +41,6 @@ a {
     font-size: 20px;
     transition: all 0.3s ease;
     will-change: transform;
-
 }
 
 .favorites-h2:hover {
@@ -99,7 +102,7 @@ a {
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 200px));
     gap: 30px;
     justify-content: center;
     text-align: center;
