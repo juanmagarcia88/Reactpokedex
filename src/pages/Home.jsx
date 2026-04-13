@@ -128,7 +128,7 @@ export default function Home() {
 
         fetchPokemon()
 
-    }, [page, debouncedSearch, search, pokemonList, type])
+    }, [page, debouncedSearch, search, pokemonList, type, showFavs])
 
     return (
         <main>
