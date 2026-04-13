@@ -2,9 +2,17 @@ import background from '../assets/pokemon-wallpaper.jpg'
 import reactIcon from '../assets/react-icon.png'
 import pokedex from '../assets/pokedex.png'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 import './Landing.css'
 
 export default function Landing() {
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, []);
     return (
         <main
             className="landing"

@@ -52,6 +52,13 @@ export default function Home() {
         fetchNames()
     }, [])
 
+    const [debouncedSearch, setDebouncedSearch] = useState("")
+
+    useEffect(() => {
+        const timer = setTimeout(() => setDebouncedSearch(search), 400)
+        return () => clearTimeout(timer)
+    }, [search])
+
     useEffect(() => {
 
         const fetchPokemon = async () => {
@@ -113,11 +120,11 @@ export default function Home() {
 
         fetchPokemon()
 
-    }, [page, search, pokemonList, type])
+    }, [page, debouncedSearch, search, pokemonList, type])
 
     return (
         <main>
-            
+
             <Header
                 setSearch={setSearch}
                 setType={setType}
