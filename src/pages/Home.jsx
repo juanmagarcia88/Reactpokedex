@@ -61,6 +61,14 @@ export default function Home() {
 
     useEffect(() => {
 
+        if (showFavs) {
+
+            setLoading(false)
+
+            return
+
+        }
+
         const fetchPokemon = async () => {
 
             setLoading(true)
@@ -134,7 +142,7 @@ export default function Home() {
                 type={type}
             />
 
-            {!isFiltering && (
+            {!isFiltering && !showFavs && (
                 <Pagination
                     page={page}
                     setPage={setPage}
@@ -159,7 +167,7 @@ export default function Home() {
                     ))}
 
                     {showFavs && favorites.length === 0 && (
-                        <p>You don't have any favorites yet</p>
+                        <p className='any-favorites'>You don't have any favorites yet</p>
                     )}
 
                 </div>
